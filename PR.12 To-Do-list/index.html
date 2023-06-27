@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #2196f3, #fff);
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1976d2;
+            box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .task-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .add-button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background: #2196f3;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-button:hover {
+            background-color: #1976d2;
+        }
+
+        .clear-button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #2196f3;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .clear-button:hover {
+            background-color: #1976d2;
+        }
+
+        .undo-button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #9e9e9e;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .undo-button:hover {
+            background-color: #757575;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-item span {
+            flex-grow: 1;
+        }
+
+        .edit-button,
+        .delete-button {
+            padding: 6px;
+            background-color: #2196f3;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .edit-button:hover,
+        .delete-button:hover {
+            background-color: #1976d2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        <input type="text" id="taskInput" class="task-input" placeholder="Enter a task">
+        <button onclick="addTask()" class="add-button">Add Task</button>
+        <button onclick="clearAllTasks()" class="clear-button">Clear All</button>
+        <button onclick="undoDeleteTask()" class="undo-button" id="undoButton">Undo Delete</button>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        var tasks = [];
+        var deletedTasks = [];
+        var undoButton = document.getElementById("undoButton");
+
+        // Load tasks from localStorage on page load
+        window.onload = function () {
+            var storedTasks = localStorage.getItem("tasks");
+            if (storedTasks) {
+                tasks = JSON.parse(storedTasks);
+
+                // Render tasks
+                renderTasks();
+            }
+        }
+
+        function saveTasks() {
+            // Save tasks to localStorage
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
+        function renderTasks() {
+            var taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+
+            tasks.forEach(function (task, index) {
+                var li = document.createElement("li");
+                li.className = "task-item";
+
+                var span = document.createElement("span");
+                span.innerHTML = task.text;
+                li.appendChild(span);
+
+                var editButton = document.createElement("button");
+                editButton.innerHTML = "Edit";
+                editButton.className = "edit-button";
+                editButton.onclick = function () {
+                    editTask(index);
+                };
+
+                li.appendChild(editButton);
+
+                var deleteButton = document.createElement("button");
+                deleteButton.innerHTML = "Delete";
+                deleteButton.className = "delete-button";
+                deleteButton.onclick = function () {
+                    deleteTask(index);
+                };
+
+                li.appendChild(deleteButton);
+                taskList.appendChild(li);
+            });
+
+            saveTasks();
+
+            // Show or hide the Undo Delete button
+            if (deletedTasks.length > 0) {
+                undoButton.style.display = "block";
+            } else {
+                undoButton.style.display = "none";
+            }
+        }
+
+        function addTask() {
+            var taskInput = document.getElementById("taskInput");
+
+            if (taskInput.value !== "") {
+                var task = {
+                    text: taskInput.value
+                };
+
+                tasks.push(task);
+
+                taskInput.value = "";
+
+                // Render tasks
+                renderTasks();
+            }
+        }
+
+        function editTask(index) {
+            var newTask = prompt("Enter a new task");
+
+            if (newTask !== null) {
+                tasks[index].text = newTask;
+
+                // Render tasks
+                renderTasks();
+            }
+        }
+
+        function deleteTask(index) {
+            var deletedTask = tasks.splice(index, 1)[0];
+            deletedTasks.push(deletedTask);
+
+            // Render tasks
+            renderTasks();
+        }
+
+        function undoDeleteTask() {
+            if (deletedTasks.length > 0) {
+                var lastDeletedTask = deletedTasks.pop();
+                tasks.push(lastDeletedTask);
+
+                // Render tasks
+                renderTasks();
+            }
+        }
+
+        function clearAllTasks() {
+            tasks = [];
+            deletedTasks = [];
+
+            // Render tasks
+            renderTasks();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculation </title>
+</head>
+<body>
+    <h1>Basic Calculation of Array</h1>
+
+    <script>
+        let txt="";
+        let student =[{firstname:'Rina',
+            gender:'female',
+            age:28,
+            city:'surat'
+        },
+        {
+            firstname:'Mina',
+            gender:'female',
+            age:30,
+            city:'Mumbai'
+        }];
+        let obj = {firstname:'jhon',gender:'male',age:25,city:'Rajkot'}
+        let obj1 = {firstname:'rita',gender:'female',age:22,city:'vadodra'}
+
+        let leng = student.length;
+        console.log("Array length",leng)
+
+        student.push(obj);
+        student.pop();
+        console.log(student)
+
+        student.shift() // first data delete
+        student.unshift(obj1) // data add
+
+        student.reverse()
+        console.log(student.gender)
+    </script>
+</body>
+</html>

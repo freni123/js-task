@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods</title>
+</head>
+<body>
+    <h1>Array Methods</h1>
+
+    <script>
+        //Array length.................
+
+        const months =["January", "February", "March", "April"];
+        document.write("The length before values:" , "  ",months);
+        let size = months.length;
+        document.write('<br>' + "The length of array size:" ,"  ",size);
+
+        //Array Push()....................(new element add)
+
+        const day =["Sunday","Monday","Tuesday","Wednesday"];
+
+        document.write('<br>' + '<br>' + "The push before values:" , "  ",day);
+        day.push("Thursday")
+        document.write('<br>' + "The Push of array after values:" , "  ",day);
+
+        //Array pop().....................(remove the last element)
+    
+        document.write('<br>' + '<br>' + "The pop before values:" ,"  ", day);
+        day.pop();
+        document.write('<br>' + "The Pop of array after values:" ,"  ", day);
+
+        //Array sort()........................
+
+        const fruits = ["Orange","Mango","Papaya","Apple"];
+        document.write('<br>' + '<br>' + "The sort before values:" , "  ",fruits);
+        document.write('<br>' + "The sort of array methods:" ,"  ", fruits.sort());
+
+        //Array reverse().......................
+        document.write('<br>' + '<br>' + "The Reverse before values:" , "  ",fruits);
+        document.write('<br>' + "The Reverse of array values:" ,"  ", fruits.reverse());
+
+        //number reverse methods...........................
+        const number = [3,2,1,4,5];
+        document.write('<br>' + '<br>' + "The before Reverse number of values:" ,"  ", number);
+        number.reverse();
+        document.write('<br>' + "The after Reverse number of values:" ,"  ", number);
+
+        //Array shift()...........................(first element remove)
+
+        const name = ["Rina","Mina","Tina","Mira"];
+        document.write('<br>' + '<br>' + "The  shift  before values :" ,"  ", name);
+        name.shift();
+        document.write('<br>' + "The shift after values:" ,"  ", name);
+
+        //Array unshift()...........................(add new items)
+        document.write('<br>' + '<br>' + "The unshift before values:" , "  ",day);
+        day.unshift("Thrusday")
+        document.write('<br>' + "The unshift after values:" , "  ",day);
+
+        //Array splice()..............................
+        const stu =["Rina","mina","Tina","Mira"];
+        document.write('<br>' + '<br>' + "The splice before values:" , "  ",stu);
+
+        //At position 2 ,add 2 elements
+        stu.splice(2,0,"Siya","Tiya");
+        document.write('<br>' + "The splice() of array methods:","  ",stu);
+
+        //At position 2,remove 2 elements
+        // stu.splice(2,2);
+        // document.write('<br>' + "The splice() of array methods:","  ",stu);
+
+        //At position 2,add 2 elemnts ,remove 1:
+        // stu.splice(2,1,"Riya","Sita");
+        // document.write('<br>' + "The splice() of array methods:","  ",stu);
+
+        //Array slice()...................................
+
+        const languages =["javascript","python","c","c++","java"];
+        document.write('<br>' + '<br>' + "The splice before values:" , "  ",languages);
+        const arr = languages.slice(1);
+        document.write('<br>' + "The slice after values:","  ",arr);
+        
+    </script>
+</body>
+</html>

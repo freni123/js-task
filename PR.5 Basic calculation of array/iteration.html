@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Iteration</title>
+</head>
+<body>
+    <h1>javascript iteration array</h1>
+    <script>
+    // forEach().....................
+        const day = ["Sunday","Monday","Tuesday"];
+        document.write("The forEach methods:"  + '<br>')
+
+        day.forEach(function(value){
+            document.write(value + '<br>')
+        })
+    //Array map()..................(return new array)
+
+        const num = [1,2,3,4,5];
+        document.write('<br>' + "The map before values:",num + '<br>');
+        const newnum = num.map(myFunctionMap);
+        document.write("The map after values:",newnum + '<br>');
+
+            function myFunctionMap(value){
+                 return value * 2;
+        }
+     //Array flatMap().............
+
+        const num1 = [2,4,6,8,10];
+        document.write('<br>' + "The flatmap before values:",num1 + '<br>');
+        const newnum1 = num1.flatMap((a) => a * 3);
+        document.write( "The flatmap after values:" ,newnum1);
+
+    //Array reduce()........................
+       const number =[30,40,50,60];
+       document.write('<br>' + '<br>' + "The reduce before values:",number);
+       let sum =number.reduce(sumOfnumber);
+       document.write('<br>' + "The reduce after values:"+sum);
+       
+       function sumOfnumber(total,value){
+           return total + value;
+        }
+
+    //Array keys()................................
+       const stu =["Rina","Mina","Tina","mira"];
+       const keys =stu.keys();
+
+       let txt="";
+       for(let x of keys){
+            txt += x + "<br>";
+       }
+       document.write('<br>' + '<br>' + "The Keys methods:",txt);
+
+     //Array filter().....................
+       //  const words = ["Apple","Kiwi","Banana","Orange"];
+       //  document.write('<br>' + '<br>' + "The Filter Methods:",words + '<br>');
+       //  const result =words.filter(word => word.length > 4);
+       //  document.write(result);
+       
+       const num2 =[10,20,35,25,40];
+       document.write('<br>' + "The Filter before values:",num2+ '<br>');
+       const newnum2 = num2.filter(isBig);
+       document.write("The filter atfer values:",newnum2);
+       
+       function isBig(value){
+           return value > 20;
+        }
+        
+     //Array includes()................
+        const num3 = [10,20,40,50];
+        document.write('<br>' + '<br>' + "The includes before values:",num3);
+        document.write('<br>' + "The includes after values:",num3.includes(40,2));
+
+    //Array find().................
+    var ages =[10,13,20,25];
+    document.write('<br>' + '<br>' + "The find before values:",ages);
+    var b =ages.find(checkAdult);
+    document.write('<br>' + "The find after values:",b);
+
+    function checkAdult(age){
+        return age>=18 ;
+    }
+
+    //Array findindex().................
+    document.write('<br>' + '<br>' + "The findIndex before values:",ages);
+    var b =ages.findIndex(checkAdult);
+    document.write('<br>' + "The findIndex after values:",b);
+
+    function checkAdult(age){
+        return age>=18 ;
+    }
+
+
+    </script>
+</body>
+</html>

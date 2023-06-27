@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>triangle area</title>
+</head>
+<body>
+    <h1>Find Triangle area.</h1>
+    <h2 id="triangle"></h2>
+    <h3 id="triangle1"></h3>
+
+    <script>
+function myFunction() {
+            // const a = 0.5;
+            let base = parseInt(prompt(`Enter Triangle base : `));
+            let hight = parseInt(prompt(`Enter Triangle hight : `));
+
+            document.getElementById(`triangle`).innerHTML = `Triangle base is ` + base + ` , Triangle hight is ` + hight;
+
+            let area = 0.5 * base * hight;
+
+            document.getElementById(`triangle1`).innerHTML = `Area of triangle is ` + area;
+        }
+        myFunction()
+
+
+
+    </script>
+</body>
+</html>

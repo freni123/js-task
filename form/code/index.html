@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> json form</title>
+</head>
+<body>
+   <h1>Table Data</h1> 
+   <table>
+    <tr>
+        <th class="px5">UserId</th>
+        <th class="px5">Id</th>
+        <th class="px5">title</th>
+        <th class="px5">body</th>
+    </tr>
+    <tbody id="record">
+      
+    </tbody>
+  </table>
+  <div id="rec"></div>
+   </table>
+   <script>
+    temparr=[]
+    //    let data =fetch("https://jsonplaceholder.typicode.com/posts")
+            .then((response) => response.json())
+            .then((json) =>{
+                // let val= JSON.parse(localStorage.getItem(temparr['data']))
+            });
+
+        let tbl = "";
+          for(let i in key){
+            tbl += `
+                        <tr>
+                            <td class="px-5">${key[i].Id}</td>
+                            <td class="px-5">${key[i].UserId}</td>
+                            <td class="px-5">${key[i].title}</td>
+                            <td class="px-5">${key[i].body}</td
+                        </tr>
+`
+        };
+        // document.getElementById('record').innerHTML = tbl;
+        
+    //    viewdata(); 
+   </script>
+</body>
+</html>
+<!-- // let val= JSON.parse(localStorage.getItem(temparr['data']))
+            // let data =[];
+    //    const viewdata=()=>{
+    //     document.getElementById('ed').style.display="none";
+    //     let val= JSON.parse(localStorage.getItem('data')) -->
+
+    <!-- <td><button class="btn btn-danger px-3" onclick="del(${val[i].userid})">Delete</button>
+        <button type="button" class="btn btn-primary px-5" onclick="editdata(${val[i].userid})" data-bs-toggle="modal" data-bs-target="#myModal">
+           Edit
+           </button> -->

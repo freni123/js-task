@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two variable</title>
+</head>
+<body>
+    <h1 id="demo"></h1>
+    <h2 id="demo1"></h2>
+
+    <script>
+        function Calc(a, b) {
+            a = parseInt(prompt('Enter the Value A :'));
+            b = parseInt(prompt('Enter the value B :'));
+
+            document.getElementById('demo1').innerHTML = 'A = ' + a + ' , B = ' + b;
+            
+            let add = a+b;
+            let sub = a-b;
+            let mul = a*b;
+            let div = a/b;
+            
+            document.getElementById('demo').innerHTML = 'A + B = ' + add + ' , A - B = ' + sub + ' , A * B = ' + mul + ' , A / B = ' + div;
+
+            }
+            Calc();
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Get the form element and add an event listener
+const form = document.getElementById('eventForm');
+form.addEventListener('submit', addEventToList);
+
+// Define the addEventToList function
+function addEventToList(event) {
+  event.preventDefault();
+  // Get the input element, create a new list item, and add it to the list
+  const input = document.getElementById('eventInput');
+  const newEvent = input.value;
+  const newItem = document.createElement('li');
+  newItem.textContent = newEvent;
+  const eventList = document.getElementById('eventList');
+  eventList.appendChild(newItem);
+  // Save the updated list to local storage
+  const eventArray = Array.from(eventList.children);
+  const stringifiedArray = JSON.stringify(eventArray);
+  localStorage.setItem('eventList', stringifiedArray);
+  // Clear the input field
+  input.value = '';
+}
+
+// Retrieve the list from local storage and display it using the map method
+const storedList = localStorage.getItem('eventList');
+if (storedList) {
+  const parsedList = JSON.parse(storedList);
+  const eventList = document.getElementById('eventList');
+  parsedList.map(event => {
+    const newItem = document.createElement('li');
+    newItem.textContent = event.textContent;
+    eventList.appendChild(newItem);
+  });
+}
+
+// Add an event listener to the remove button
+const removeButton = document.getElementById('removeButton');
+removeButton.addEventListener('click', removeEventFromList);
+
+// Define the removeEventFromList function
+function removeEventFromList() {
+  // Get the input element and remove the specified item from the list
+  const input = document.getElementById('removeInput');
+  const index = input.value - 1;
+  const eventList = document.getElementById('eventList');
+  const eventArray = Array.from(eventList.children);
+  eventList.removeChild(eventArray[index]);
+  // Save the updated list to local storage
+  const stringifiedArray = JSON.stringify(eventArray);
+  localStorage.setItem('eventList', stringifiedArray);
+  // Clear the input field
+  input.value = '';
+}
+
+// Add an event listener to the update button
+const updateButton = document.getElementById('updateButton');
+updateButton.addEventListener('click
+    </script>
+</body>
+</html>

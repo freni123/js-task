@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+<body>
+    <h1>Type of function</h1>
+<script>
+    //  Normal function (without return function)
+    
+    function normal(){
+        document.write("Hello EveryBody");
+    }
+    normal()
+    
+    //  parameterized function (with argument)
+
+        function sum(a,b){
+            if(b===undefined){
+                b=10;
+            }
+            return a+b;
+        }
+        document.write('<br>' + '<br>' ,"sum of values :",sum(5));
+
+        //  parameterized function (without argument)
+        let side = 20;
+        function square(){
+            let area=side*side;
+            document.write('<br>' + '<br>' ,"Area of square :", + area);
+        }
+        square()
+
+         //  return function // auto reader 
+         
+        function sum(maths,english,science){ 
+            var s = maths + english + science;
+            return s;
+        }
+        var total = sum(50,60,70)
+        document.write('<br>' + '<br>' ,"sum of Total:"+total);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gross Salary</title>
+</head>
+<body>
+    <h1>Find Gross Salary</h1>
+    <h2 id="demo"></h2>
+    <h3 id="demo1"></h3>
+
+    <!-- <script>
+        let basesalary=parseInt(prompt("Enter the base salary:"));
+        let hra=basesalary*10/100;
+        let da=basesalary*5/100;
+        let ta=basesalary*8/100;
+        let gs=basesalary+hra+da+ta;
+        document.write("Gross salary:" + gs);
+    </script>
+     -->
+<script>
+      function myFunction() {
+            let bs = parseInt(prompt(`Enter the Base salary : `));
+            const hra =(10 * 100) / bs;
+            const da  =(5 * 100) / bs;
+            const ta  =(8 * 100) / bs;
+                 document.getElementById(`demo1`).innerHTML = `Basic salary = ` + bs + ` , HRA = ` + hra + ` , DA = ` + da + ` , TA = ` + ta;
+
+            let total = bs+hra+da+ta;
+
+            document.getElementById(`demo`).innerHTML = total;
+        }
+        myFunction();
+</script>
+
+</body>
+</html>

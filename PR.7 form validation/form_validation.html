@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validation</title>
+    <style>
+        .btn input{
+            border-radius: 5px;
+            background-color: #008000;
+            color: white;
+            width: 90px;
+            height: 30px;
+            font-size: 15px;
+            border:2px;
+            line-height: 10px;
+        }
+        #user_name{
+            margin: 10px;
+        }
+        #phone_no{
+            margin: 10px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <h1 style="color:#008000">Form Validation In Javascript</h1>
+    <form name="myform" onsubmit="return validateform()"> 
+       <label>UserName:</label>
+        <input type="text" name="username"id="user_name"placeholder="enter your name" method="post">
+        <br><br>
+
+        <label>Phone No:</label>
+        <input type="tel" name="phoneno" id="phone_no" placeholder="enter your phone no"method="post"><br><br>
+        <div class="btn">
+        <input type="submit" value="SUBMIT">   
+        <input type="reset" value="RESET">
+        </div>
+    </form>
+
+    <script>
+        //UserName validation
+
+    function validateform(){
+            let a = document.forms["myform"]["username"].value;
+            if(a==""){
+                alert("please fill username");
+            }else if(a.length < 3 ){
+                alert("username must be 3 character");
+            }else if(a.length > 20){
+                alert(" username must be less than 20 character");
+            }else{
+                console.log('username',a);
+            }  
+
+        // phone number validation
+
+        let a1 = document.forms["myform"]["phoneno"].value;  
+        if(a1==""){
+                alert(" please fill mobile number")
+        }
+        else if(isNaN(a1)){
+                alert(" mobile number should be Numeric");
+        }
+        else if(a1.length < 10 || a1.length > 10){
+                alert("mobile number must be 10 digit")
+        }else{
+            console.log('phone No:',a1);
+            return false;
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power of number</title>
+</head>
+<body>
+    <h1>Power Of Number:</h1>
+    <script>
+        const b=parseInt(prompt("Enter Base Value:"));
+        const e=parseInt(prompt("Enter exponent Value:"));
+
+        let i;
+        pow=1;
+        
+        
+        function PowerOfNum(b,e){
+
+        for(i=0 ;i<e ;i++){
+            pow=pow*b;
+        }
+        return pow;
+    }
+    document.write(PowerOfNum(b,e));
+
+    </script>
+</body>
+</html>

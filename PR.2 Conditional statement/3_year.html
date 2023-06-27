@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leap or not Leap year</title>
+</head>
+<body>
+    <h1> check Leap year or not Leap year</h1>
+    <h2 id="demo"></h2>
+
+    <script>
+        let year =2023;
+        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+             document.getElementById('demo').innerHTML = " 2023 = is a leap year"
+        }else{
+            document.getElementById('demo').innerHTML = " 2023 = is a not leap year"
+        }
+    </script>
+</body>
+</html>
