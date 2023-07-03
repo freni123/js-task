@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To do list</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>To-Do List</h1>
+
+    <input type="text" id="taskInput" class="task-input" placeholder="Enter a task">
+    <!-- add button -->
+    <button onclick="addTask()" class="add-button">Add Task</button>
+    <!-- clear button -->
+    <button onclick="clearAllTasks()" class="clear-button">Clear All</button>
+    <!-- undo button -->
+    <button onclick="undoDeleteTask()" class="undo-button" id="undoButton">Undo Delete</button>
+
+    <ul id="taskList"></ul>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>
