@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget application</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1 class="budget-header">Budget Application</h1>
+    <div class="wrapper">
+        <div class="container">
+            <div class="sub-container">
+                <div class="total-amount-container">
+                    <!-- budget -->
+                    <h3>Budget</h3>
+                    <input type="number" id="total-amout" placeholder="Enter Total Amout" />
+                    <button class="submit" id="total-amount-button">set Budget</button>
+                </div>
+                <!-- Expenditure -->
+                <div class="user-amount-container">
+                    <h3>Expenses</h3>
+                    <input type="text" name="" class="product-title" id="product-title"placeholder="Enter Title of Product" />
+                    <input type="number" name="" id="user-amout" placeholder="Enter Cost of Product">
+                    <button class="submit" id="check-amount">Check Amout</button>
+                </div>
+            </div>
+            <!-- output -->
+            <div class="output-container flex-space">
+                <div>
+                    <p>Total Budget</p>
+                    <span id="amount">0</span>
+                    <button class="add" id="new-amount-button">Add Budget</button>
+                </div>
+                <div>
+                    <p>Expenses</p>
+                    <span id="Expenditure-value">0</span>
+                </div>
+                <div>
+                    <p>Balance</p>
+                    <span id="blaance-amount">0</span>
+                </div>
+            </div>
+        </div>
+        <!-- list -->
+        <div class="list">
+            <h3>Expense List</h3>
+            <div class="list-container" id="list"></div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

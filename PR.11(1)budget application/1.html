@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #calculator {
+            width: 90%;
+    font-size: 16px;
+    max-width: 43.75em;
+    margin: 4em auto;
+
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-top: 5px;
+           
+
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .hide-error {
+            display: none;
+            color: red;
+        }
+
+        #expense-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        #expense-table th,
+        #expense-table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        #expense-table th {
+            background-color: #f2f2f2;
+        }
+
+        .delete-button {
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    <div id="calculator">
+        <label for="total-amount">Total Amount:</label>
+        <input type="number" id="total-amount" placeholder="Enter total amount">
+        <button id="total-amount-button">Set Budget</button>
+        <button id="new-amount-button">Enter New Amount</button>
+        <p id="budget-error" class="hide">Invalid budget amount</p>
+
+        <label for="product-title">Product Title:</label>
+        <input type="text" id="product-title" placeholder="Enter product title">
+        <label for="user-amount">Product Cost:</label>
+        <input type="number" id="user-amount" placeholder="Enter product cost">
+        <button id="check-amount">Add Expense</button>
+        <p id="product-title-error" class="hide-error">Invalid product title or cost</p>
+
+        <div id="results">
+            <p>Budget: $<span id="amount">0.00</span></p>
+            <p>Expenditure: $<span id="expenditure-value">0.00</span></p>
+            <p>Balance: $<span id="balance-amount">0.00</span></p>
+        </div>
+
+        <table id="expense-table">
+            <thead>
+                <tr>
+                    <th>Product Title</th>
+                    <th>Product Cost</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="expense-list">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let budget = 0;
+        let expenditure = 0;
+        let balance = 0;
+        const expenses = [];
+
+        const totalAmountInput = document.getElementById('total-amount');
+        const setBudgetButton = document.getElementById('total-amount-button');
+        const productTitleInput = document.getElementById('product-title');
+        const productCostInput = document.getElementById('user-amount');
+        const checkAmountButton = document.getElementById('check-amount');
+        const budgetOutput = document.getElementById('amount');
+        const expenditureOutput = document.getElementById('expenditure-value');
+        const balanceOutput = document.getElementById('balance-amount');
+        const expenseListContainer = document.getElementById('expense-list');
+
+        // Set Budget
+        setBudgetButton.addEventListener('click', function() {
+            const totalAmountValue = parseFloat(totalAmountInput.value);
+            if (!isNaN(totalAmountValue) && totalAmountValue > 0) {
+                budget = totalAmountValue;
+                budgetOutput.textContent = budget;
+                totalAmountInput.value = '';
+                document.getElementById('budget-error').classList.add('hide');
+            } else {
+                document.getElementById('budget-error').classList.remove('hide');
+            }
+        });
+
+        // Enter New Amount
+        document.getElementById('new-amount-button').addEventListener('click', function() {
+            const totalAmountValue = parseInt(prompt("Enter new amount"));
+            if (!isNaN(totalAmountValue) && totalAmountValue > 0) {
+                budget = totalAmountValue;
+                budgetOutput.textContent = budget;
+                totalAmountInput.value = '';
+                document.getElementById('budget-error').classList.add('hide');
+            } else {
+                document.getElementById('budget-error').classList.remove('hide');
+            }
+        });
+
+        // Check Amount
+        checkAmountButton.addEventListener('click', function() {
+            const productTitleValue = productTitleInput.value;
+            const productCostValue = parseFloat(productCostInput.value);
+            if (productTitleValue.trim() === '' || isNaN(productCostValue) || productCostValue <= 0) {
+                document.getElementById('product-title-error').classList.remove('hide-error');
+                return;
+            }
+            
+            const expense = {
+                title: productTitleValue,
+                cost: productCostValue
+            };
+            expenses.push(expense);
+            expenditure += productCostValue;
+            balance = budget - expenditure;
+
+            expenditureOutput.textContent = expenditure.toFixed(2);
+            balanceOutput.textContent = balance.toFixed(2);
+
+            // Display expense list
+            const expenseRow = document.createElement('tr');
+            expenseRow.innerHTML = `
+                <td>${productTitleValue}</td>
+                <td>${productCostValue.toFixed(2)}</td>
+                <td><button class="delete-button" onclick="deleteExpense(${expenses.length - 1})">Delete</button></td>
+            `;
+            expenseListContainer.appendChild(expenseRow);
+
+            // Clear input fields
+            productTitleInput.value = '';
+            productCostInput.value = '';
+            document.getElementById('product-title-error').classList.add('hide-error');
+        });
+
+        function deleteExpense(index) {
+            if (index >= 0 && index < expenses.length) {
+                const deletedExpense = expenses.splice(index, 1)[0];
+                expenditure -= deletedExpense.cost;
+                balance = budget - expenditure;
+                expenditureOutput.textContent = expenditure.toFixed(2);
+                balanceOutput.textContent = balance.toFixed(2);
+
+                const table = document.getElementById('expense-table');
+                const expenseRow = table.getElementsByTagName('tr')[index + 1]; // +1 to account for table header row
+                expenseRow.remove();
+            }
+        }
+    </script>
+</body>
+</html> 
